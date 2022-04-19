@@ -133,12 +133,21 @@ function isBlockWordRegExp(string) {
 
 	let blocks = [/B|O/gi, /X|K/gi, /D|Q/gi, /C|P/gi, /N|A/gi, /G|T/gi, /R|E/gi, /F|S/gi, /J|W/gi, /H|U/gi, /V|I/gi, /L|Y/gi, /Z|M/gi];
 
-	blocks.every(regExp => {
-		return ((string.match(regExp) || []).length > 2);
+	return blocks.every(regExp => {
+		return ((string.match(regExp) || []).length < 2);
 	});
 
 }
 
+console.log("RIP");
+console.log(isBlockWordRegExp('BATCH'));      // true
+console.log(isBlockWordRegExp('BUTCH'));      // false
+console.log(isBlockWordRegExp('jest'));       // true
+console.log(isBlockWordRegExp('floW'));       // true
+console.log(isBlockWordRegExp('APPLE'));      // false
+console.log(isBlockWordRegExp('apple'));      // false
+console.log(isBlockWordRegExp('apPLE'));      // false
+console.log(isBlockWordRegExp('Box'));        // false
 
 function star(n) {
 
@@ -160,7 +169,7 @@ function star(n) {
 		row++;
 
 	}
-	
+
 	let centerRow = '*'.repeat(n);
 	starGrid[center] = centerRow;
 
